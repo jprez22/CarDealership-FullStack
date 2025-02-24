@@ -95,12 +95,26 @@ def get_cars(request):
 # # Update the `get_dealerships` view to render the index page with
 #Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
-    if(state == "All"):
-        endpoint = "/fetchDealers"
-    else:
-        endpoint = "/fetchDealers/"+state
-    dealerships = get_request(endpoint)
-    return JsonResponse({"status":200,"dealers":dealerships})
+    try:
+        if(state == "All"):
+            endpoint = "/fetchDealers"
+        else:
+            endpoint = "/fetchDealers/"+state
+        dealerships = get_request(endpoint)
+        return JsonResponse({"status":200,"dealers":dealerships})
+    except Exception as Http404:
+        return JsonResponse({"status": 404, "mssg": str(Http404)})
+
+        '''
+        url = "https://9bebcb01.eu-de.apigw.appdomain.cloud/api/dealership"
+        # Get dealers from the Cloudant DB
+        context["dealerships"] = get_dealers_from_cf(url)
+
+        # dealer_names = ' '.join([dealer.short_name for dealer in context["dealerships"]])
+        # return HttpResponse(dealer_names)
+
+        return render(request, 'djangoapp/index.html', context)
+        '''
 
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
 def get_dealer_reviews(request, dealer_id):
