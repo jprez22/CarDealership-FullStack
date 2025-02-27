@@ -15,6 +15,7 @@ from .populate import initiate
 from .models import CarMake, CarModel
 
 
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
