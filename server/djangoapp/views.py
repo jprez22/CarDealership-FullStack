@@ -99,8 +99,10 @@ def get_cars(request):
 
 
 # Update the `get_dealerships` view to render the index page with
-# Update the `get_dealerships` render list of dealerships all by default, 
-    particular state if state is passed
+'''
+Update the `get_dealerships` render list of dealerships all 
+by default particular state if state is passed
+'''
 def get_dealerships(request, state="All"):
     try:
         if (state == "All"):
