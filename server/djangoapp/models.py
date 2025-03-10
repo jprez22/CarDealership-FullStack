@@ -1,6 +1,6 @@
 # from django.utils.timezone import now
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class CarMake(models.Model):
@@ -17,26 +17,24 @@ class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     CAR_TYPES = [
-        ('SEDAN', 'Sedan'),
-        ('SUV', 'SUV'),
-        ('WAGON', 'Wagon'),
-        ('TRUCK', 'Truck'),
-        ('TWODOOR', 'TwoDoor'),
+        ("SEDAN", "Sedan"),
+        ("SUV", "SUV"),
+        ("WAGON", "Wagon"),
+        ("TRUCK", "Truck"),
+        ("TWODOOR", "TwoDoor"),
     ]
     CAR_COLORS = [
-        ('BLACK', 'Black'),
-        ('SILVER', 'Silver'),
-        ('WHITE', 'White'),
-        ('RED', 'Red'),
-        ('BLUE', 'Blue'),
+        ("BLACK", "Black"),
+        ("SILVER", "Silver"),
+        ("WHITE", "White"),
+        ("RED", "Red"),
+        ("BLUE", "Blue"),
     ]
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
-    year = models.IntegerField(default=2023,
-                validators=[
-                        MaxValueValidator(2023),
-                            MinValueValidator(2015)
-                ])
-    color = models.CharField(max_length=20, choices=CAR_COLORS, default='')
+    type = models.CharField(max_length=10, choices=CAR_TYPES, default="SUV")
+    year = models.IntegerField(
+        default=2023, validators=[MaxValueValidator(2023), MinValueValidator(2015)]
+    )
+    color = models.CharField(max_length=20, choices=CAR_COLORS, default="")
 
     def __str__(self):
         return self.name  # Return the name as the string representation
